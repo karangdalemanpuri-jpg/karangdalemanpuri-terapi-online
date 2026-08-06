@@ -1,4 +1,4 @@
-// URL API Apps Script const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnRNoXRjQUHE0kgILFijVOdKnmcchscbCvhHGZ9teJIfUJNNvUTKWPxpXINdrlmoR2JhgZyn0QqxETsfjwlKq9Nd1WQ2Y1MLbS2kHJS7cWvqjWQPx1mEMf4w2Py7KRmB1_1B1agxnxbPWBxKj7l2B1OJcGIYn1DhnLeuVv9_ZpBkKgEIW8uZqVSfFS90xgwtqr7mT3CHGhHFtzdA0EV7WdUVSmoHoeaTJ6_yUviC_sp6ihbKPebMZvBVmeCIN4AWEi3QDXlSZb3uEx9-vkFo9NN715HbTg&lib=M5dYG2LfjgPNFHm0Ckf0u3LznOzLTcAVA";
+// URL API Apps Script const API_URL = "https://script.google.com/macros/s/AKfycbwpaTnag6oVJF1PC8Kb5TDVdlnaiwvEMsjSBXclrYPI8xoJ1xT0zlpUdtKIh8NkJGpY/exec";
 
 // Ambil data dari Apps Script
 fetch(API_URL)
