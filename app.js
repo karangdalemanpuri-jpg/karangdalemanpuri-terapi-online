@@ -1,5 +1,4 @@
-// URL API Apps Script
-const API_URL = "https://script.google.com/macros/s/AKfycbxyQVMIeq3vDDPiou6-19dKxuf1xy_TphWsu_nfqtNcERihXuB0d0kvcrTNDCdxDrkx/exec";
+// URL API Apps Script const API_URL = "https://script.google.com/macros/s/AKfycbwpaTnag6oVJF1PC8Kb5TDVdlnaiwvEMsjSBXclrYPI8xoJ1xT0zlpUdtKIh8NkJGpY/exec";
 
 // Ambil data dari Apps Script
 fetch(API_URL)
