@@ -1,60 +1,153 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rumah Terapi Karangdaleman Puri</title>
 
-<meta charset="UTF-8">
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background:#f4f8f2;
+      margin:0;
+      padding:20px;
+      display:flex;
+      justify-content:center;
+    }
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    .card{
+      background:white;
+      max-width:420px;
+      width:100%;
+      border-radius:18px;
+      padding:24px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.12);
+      text-align:center;
+    }
 
-<title>Rumah Terapi Karangdaleman Puri</title>
+    h1{
+      color:#2e7d32;
+      margin-bottom:6px;
+      font-size:28px;
+    }
 
-<link rel="stylesheet" href="style.css">
+    .subtitle{
+      font-size:18px;
+      color:#444;
+      margin-bottom:18px;
+    }
 
+    .motto{
+      font-style:italic;
+      color:#2e7d32;
+      line-height:1.6;
+      margin-bottom:24px;
+    }
+
+    .box{
+      border-top:1px solid #ddd;
+      border-bottom:1px solid #ddd;
+      padding:16px 0;
+      margin:12px 0;
+    }
+
+    .hari{
+      font-size:20px;
+      font-weight:bold;
+      color:#333;
+    }
+
+    .sisa{
+      color:#1b5e20;
+      font-weight:bold;
+      margin-top:4px;
+    }
+
+    .btn{
+      display:inline-block;
+      margin-top:20px;
+      background:#2e7d32;
+      color:white;
+      padding:14px 26px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:bold;
+      font-size:18px;
+    }
+
+    .footer{
+      margin-top:24px;
+      font-size:12px;
+      color:#777;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
+  <div class="card">
 
-<h1>🍃 Pendaftaran Terapi</h1>
+    <h1>🍃 Rumah Terapi Karangdaleman Puri</h1>
+    <div class="subtitle">Terapi Asap Rempah</div>
 
-<h2>Rumah Terapi Karangdaleman Puri</h2>
+    <div class="motto">
+      "Sehat dari Dalam,<br>
+      Bersatu dalam Kebaikan,<br>
+      Bertobat,<br>
+      Melayani dengan Sepenuh Hati."
+    </div>
 
-<table>
+    <div class="box">
+      <div class="hari">📅 Rabu</div>
+      <div id="rabuInfo">Memuat data...</div>
+      <div class="sisa" id="rabuSisa"></div>
+    </div>
 
-<tr>
-<td>Rabu</td>
-<td id="rabu" class="angka">0 / 36</td>
-</tr>
+    <div class="box">
+      <div class="hari">📅 Sabtu</div>
+      <div id="sabtuInfo">Memuat data...</div>
+      <div class="sisa" id="sabtuSisa"></div>
+    </div>
 
-<tr>
-<td>Sabtu</td>
-<td id="sabtu" class="angka">0 / 36</td>
-</tr>
+    <p>📍 Pasar Kemis, Tangerang</p>
 
-<tr>
-<td><b>Total</b></td>
-<td id="total" class="angka">0 / 72</td>
-</tr>
+    <a id="btnDaftar" class="btn" href="#" target="_blank">
+      DAFTAR TERAPI
+    </a>
 
-<tr>
-<td>Sisa Kuota</td>
-<td id="sisa" class="angka">72</td>
-</tr>
+    <div class="footer">
+      © Rumah Terapi Karangdaleman Puri
+    </div>
 
-</table>
+  </div>
 
-<button id="btnDaftar">
+  <script>
+    const apiUrl = "https://script.google.com/macros/s/AKfycbzVr6HSMUJ78HM11OnkJXidTz1MuQMNyBYVA7V3MbAKiWVzHhHeuX7HVLOFrDDL4yLm/exec";
 
-DAFTAR SEKARANG
+    fetch(apiUrl)
+      .then(res => res.json())
+      .then(data => {
 
-</button>
+        document.getElementById("rabuInfo").innerText =
+          `${data.rabu} / ${data.kuotaRabu} Terdaftar`;
 
-</div>
+        document.getElementById("rabuSisa").innerText =
+          `Sisa Kuota: ${data.sisaRabu}`;
 
-<script src="app.js"></script>
+        document.getElementById("sabtuInfo").innerText =
+          `${data.sabtu} / ${data.kuotaSabtu} Terdaftar`;
+
+        document.getElementById("sabtuSisa").innerText =
+          `Sisa Kuota: ${data.sisaSabtu}`;
+
+        document.getElementById("btnDaftar").href = data.formUrl;
+      })
+      .catch(err => {
+        document.getElementById("rabuInfo").innerText = "Gagal memuat data";
+        document.getElementById("sabtuInfo").innerText = "Gagal memuat data";
+        console.error(err);
+      });
+  </script>
 
 </body>
-
 </html>
