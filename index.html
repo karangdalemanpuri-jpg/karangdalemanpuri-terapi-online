@@ -122,31 +122,72 @@
   </div>
 
   <script>
-    const apiUrl = "https://script.google.com/macros/s/AKfycbwpaTnag6oVJF1PC8Kb5TDVdlnaiwvEMsjSBXclrYPI8xoJ1xT0zlpUdtKIh8NkJGpY/exec";
+   const apiUrl = "https://script.google.com/macros/s/AKfycbwpaTnag6oVJF1PC8Kb5TDVdlnaiwvEMsjSBXclrYPI8xoJ1xT0zlpUdtKIh8NkJGpY/exec";
 
-    fetch(apiUrl)
-      .then(res => res.json())
-      .then(data => {
+fetch(apiUrl)
+  .then(res => res.json())
+  .then(data => {
 
-        document.getElementById("rabuInfo").innerText =
-          `${data.rabu} / ${data.kuotaRabu} Terdaftar`;
+    document.getElementById("rabuInfo").innerText =
+      `${data.rabu} / ${data.kuotaRabu} Terdaftar`;
 
-        document.getElementById("rabuSisa").innerText =
-          `Sisa Kuota: ${data.sisaRabu}`;
+    document.getElementById("rabuSisa").innerText =
+      `Sisa Kuota: ${data.sisaRabu}`;
 
-        document.getElementById("sabtuInfo").innerText =
-          `${data.sabtu} / ${data.kuotaSabtu} Terdaftar`;
+    document.getElementById("sabtuInfo").innerText =
+      `${data.sabtu} / ${data.kuotaSabtu} Terdaftar`;
 
-        document.getElementById("sabtuSisa").innerText =
-          `Sisa Kuota: ${data.sisaSabtu}`;
+    document.getElementById("sabtuSisa").innerText =
+      `Sisa Kuota: ${data.sisaSabtu}`;
 
-        document.getElementById("btnDaftar").href = data.formUrl;
-      })
-      .catch(err => {
-        document.getElementById("rabuInfo").innerText = "Gagal memuat data";
-        document.getElementById("sabtuInfo").innerText = "Gagal memuat data";
-        console.error(err);
-      });
+
+    // =================================================
+    // STATUS PENDAFTARAN
+    // =================================================
+
+    const tombol =
+      document.getElementById("btnDaftar");
+
+
+    if (data.status === "OPEN") {
+
+      tombol.href = data.formUrl;
+
+      tombol.innerText =
+        "DAFTAR TERAPI";
+
+      tombol.style.pointerEvents =
+        "auto";
+
+      tombol.style.opacity =
+        "1";
+
+    } else {
+
+      tombol.removeAttribute("href");
+
+      tombol.innerText =
+        "PENDAFTARAN DITUTUP";
+
+      tombol.style.pointerEvents =
+        "none";
+
+      tombol.style.opacity =
+        "0.6";
+    }
+
+  })
+  .catch(err => {
+
+    document.getElementById("rabuInfo").innerText =
+      "Gagal memuat data";
+
+    document.getElementById("sabtuInfo").innerText =
+      "Gagal memuat data";
+
+    console.error(err);
+
+  });
   </script>
 
 </body>
