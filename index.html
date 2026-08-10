@@ -127,7 +127,11 @@
 fetch(apiUrl)
   .then(res => res.json())
   .then(data => {
+    document.getElementById("rabuHari").innerText =
+  data.tanggalRabu;
 
+document.getElementById("sabtuHari").innerText =
+  data.tanggalSabtu;
     document.getElementById("rabuInfo").innerText =
       `${data.rabu} / ${data.kuotaRabu} Terdaftar`;
 
