@@ -199,70 +199,81 @@
     <p>📍 Pasar Kemis, Tangerang</p>
 
 
-    <!-- ============================= -->
-    <!-- TOMBOL DAFTAR -->
-    <!-- ============================= -->
+    <p>📍 Pasar Kemis, Tangerang</p>
+
+<button id="btnDaftar" class="btn" type="button">
+  DAFTAR TERAPI
+</button>
+
+<div id="cekStatusBox" class="status-box">
+
+  <div class="status-title">
+    🔎 Cek Status Pendaftaran
+  </div>
+
+  <div class="status-text">
+
+    Masukkan nomor WhatsApp yang digunakan
+    saat pendaftaran.
+
+    <br><br>
+
+    <input
+      id="inputWA"
+      class="input-wa"
+      type="tel"
+      inputmode="numeric"
+      placeholder="Contoh: 081234567890">
+
+    <br>
 
     <button
-      id="btnDaftar"
-      class="btn"
+      id="btnCekStatus"
+      class="btn btn-secondary"
       type="button">
-
-      DAFTAR TERAPI
-
+      CEK STATUS
     </button>
 
+    <button
+      id="btnBatal"
+      class="btn btn-cancel"
+      type="button">
+      BATAL
+    </button>
 
-    <!-- ============================= -->
-    <!-- FORM CEK NOMOR WA -->
-    <!-- ============================= -->
+    <div id="pesanCek" class="pesan"></div>
 
-    <div
-      id="cekStatusBox"
-      class="status-box">
+  </div>
 
-      <div class="status-title">
-        🔎 Cek Status Pendaftaran
-      </div>
+</div>
 
-      <div class="status-text">
+<div id="hasilStatus" class="status-box">
 
-        Masukkan nomor WhatsApp yang digunakan
-        saat pendaftaran.
+  <div class="status-title">
+    📋 Status Pendaftaran
+  </div>
 
-        <br>
+  <div id="statusDetail" class="status-text"></div>
 
-        <input
-          id="inputWA"
-          class="input-wa"
-          type="tel"
-          inputmode="numeric"
-          placeholder="Contoh: 081234567890">
+  <button
+    id="btnLanjutDaftar"
+    class="btn"
+    type="button">
+    LANJUT DAFTAR TERAPI
+  </button>
 
-        <br>
+  <button
+    id="btnTutupStatus"
+    class="btn btn-cancel"
+    type="button">
+    TUTUP
+  </button>
 
-        <button
-          id="btnCekStatus"
-          class="btn btn-secondary"
-          type="button">
+</div>
 
-          CEK STATUS
-
-        </button>
-
-        <button
-          id="btnBatal"
-          class="btn btn-cancel"
-          type="button">
-
-          BATAL
-
-        </button>
-
-        <div
-          id="pesanCek"
-          class="pesan">
-        </div>
+<div class="footer">
+  © Rumah Terapi Karangdaleman Puri
+</div>
 
       </div>
 
