@@ -419,33 +419,46 @@
         // STATUS PENDAFTARAN
         // =================================================
 
-        if (data.status === "OPEN") {
-
-          tombolDaftar.innerText =
-            "DAFTAR TERAPI";
-
-          tombolDaftar.style.opacity =
-            "1";
-
-          tombolDaftar.style.pointerEvents =
-            "auto";
-
-        }
-
-        else {
-
+        // =================================================
+        // STATUS TOMBOL DAFTAR TERAPI
+        // =================================================
+        
+        // Tutup jika:
+        // 1. Status server CLOSED
+        // ATAU
+        // 2. Kuota Rabu dan Sabtu sama-sama habis
+        
+        const semuaKuotaPenuh =
+          Number(data.sisaRabu) <= 0 &&
+          Number(data.sisaSabtu) <= 0;
+        
+        if (
+          data.status !== "OPEN" ||
+          semuaKuotaPenuh
+        ) {
+        
           tombolDaftar.innerText =
             "PENDAFTARAN DITUTUP";
-
+        
           tombolDaftar.style.opacity =
             "0.6";
-
+        
           tombolDaftar.style.pointerEvents =
             "auto";
-
+        
         }
-
-      })
+        
+        else {
+        
+          tombolDaftar.innerText =
+            "DAFTAR TERAPI";
+        
+          tombolDaftar.style.opacity =
+            "1";
+        
+          tombolDaftar.style.pointerEvents =
+            "auto";
+        }
 
 
       .catch(err => {
