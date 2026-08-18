@@ -1,8 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Rumah Terapi Karangdaleman Puri</title>
 
   <style>
@@ -73,6 +75,56 @@
       text-decoration:none;
       font-weight:bold;
       font-size:18px;
+      border:none;
+      cursor:pointer;
+    }
+
+    .btn-secondary{
+      background:#1565c0;
+      margin-top:10px;
+    }
+
+    .btn-cancel{
+      background:#777;
+      margin-top:10px;
+    }
+
+    .status-box{
+      display:none;
+      margin-top:20px;
+      padding:18px;
+      border-radius:12px;
+      background:#f1f8e9;
+      border:1px solid #c5e1a5;
+    }
+
+    .status-title{
+      font-size:18px;
+      font-weight:bold;
+      color:#2e7d32;
+      margin-bottom:12px;
+    }
+
+    .status-text{
+      color:#333;
+      line-height:1.6;
+    }
+
+    .input-wa{
+      width:90%;
+      max-width:320px;
+      padding:12px;
+      font-size:16px;
+      border:1px solid #bbb;
+      border-radius:8px;
+      margin-top:10px;
+      box-sizing:border-box;
+    }
+
+    .pesan{
+      margin-top:12px;
+      font-size:14px;
+      line-height:1.5;
     }
 
     .footer{
@@ -80,15 +132,23 @@
       font-size:12px;
       color:#777;
     }
+
+    .hidden{
+      display:none !important;
+    }
   </style>
 </head>
+
 
 <body>
 
   <div class="card">
 
     <h1>🍃 Rumah Terapi Karangdaleman Puri</h1>
-    <div class="subtitle">Terapi Asap Rempah</div>
+
+    <div class="subtitle">
+      Terapi Asap Rempah
+    </div>
 
     <div class="motto">
       "Sehat dari Dalam,<br>
@@ -97,23 +157,155 @@
       Melayani dengan Sepenuh Hati."
     </div>
 
-    <div class="box">
-      <div class="hari" id="rabuHari">Jadwal Rabu</div>
-      <div id="rabuInfo">Memuat data...</div>
-      <div class="sisa" id="rabuSisa"></div>
-    </div>
+
+    <!-- ============================= -->
+    <!-- JADWAL RABU -->
+    <!-- ============================= -->
 
     <div class="box">
-      <div class="hari" id="sabtuHari">Jadwal Sabtu</div>
-      <div id="sabtuInfo">Memuat data...</div>
-      <div class="sisa" id="sabtuSisa"></div>
+
+      <div class="hari" id="rabuHari">
+        Jadwal Rabu
+      </div>
+
+      <div id="rabuInfo">
+        Memuat data...
+      </div>
+
+      <div class="sisa" id="rabuSisa"></div>
+
     </div>
+
+
+    <!-- ============================= -->
+    <!-- JADWAL SABTU -->
+    <!-- ============================= -->
+
+    <div class="box">
+
+      <div class="hari" id="sabtuHari">
+        Jadwal Sabtu
+      </div>
+
+      <div id="sabtuInfo">
+        Memuat data...
+      </div>
+
+      <div class="sisa" id="sabtuSisa"></div>
+
+    </div>
+
 
     <p>📍 Pasar Kemis, Tangerang</p>
 
-    <a id="btnDaftar" class="btn" href="#" target="_blank">
+
+    <!-- ============================= -->
+    <!-- TOMBOL DAFTAR -->
+    <!-- ============================= -->
+
+    <button
+      id="btnDaftar"
+      class="btn"
+      type="button">
+
       DAFTAR TERAPI
-    </a>
+
+    </button>
+
+
+    <!-- ============================= -->
+    <!-- FORM CEK NOMOR WA -->
+    <!-- ============================= -->
+
+    <div
+      id="cekStatusBox"
+      class="status-box">
+
+      <div class="status-title">
+        🔎 Cek Status Pendaftaran
+      </div>
+
+      <div class="status-text">
+
+        Masukkan nomor WhatsApp yang digunakan
+        saat pendaftaran.
+
+        <br>
+
+        <input
+          id="inputWA"
+          class="input-wa"
+          type="tel"
+          inputmode="numeric"
+          placeholder="Contoh: 081234567890">
+
+        <br>
+
+        <button
+          id="btnCekStatus"
+          class="btn btn-secondary"
+          type="button">
+
+          CEK STATUS
+
+        </button>
+
+        <button
+          id="btnBatal"
+          class="btn btn-cancel"
+          type="button">
+
+          BATAL
+
+        </button>
+
+        <div
+          id="pesanCek"
+          class="pesan">
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- HASIL STATUS -->
+    <!-- ============================= -->
+
+    <div
+      id="hasilStatus"
+      class="status-box">
+
+      <div class="status-title">
+        📋 Status Pendaftaran
+      </div>
+
+      <div
+        id="statusDetail"
+        class="status-text">
+      </div>
+
+      <button
+        id="btnLanjutDaftar"
+        class="btn"
+        type="button">
+
+        LANJUT DAFTAR TERAPI
+
+      </button>
+
+      <button
+        id="btnTutupStatus"
+        class="btn btn-cancel"
+        type="button">
+
+        TUTUP
+
+      </button>
+
+    </div>
+
 
     <div class="footer">
       © Rumah Terapi Karangdaleman Puri
@@ -121,78 +313,493 @@
 
   </div>
 
+
   <script>
-   const apiUrl = "https://script.google.com/macros/s/AKfycbxw6By4VjW9-kKrEirxlLU1B2jgEEGsqQenetlAtOAPXXC5k2o2WmxwI0zavP8f1bhb5A/exec?api=data";
 
-fetch(apiUrl)
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("rabuHari").innerText =
-  data.tanggalRabu;
+    // =========================================================
+    // URL GOOGLE APPS SCRIPT
+    // =========================================================
 
-document.getElementById("sabtuHari").innerText =
-  data.tanggalSabtu;
-    document.getElementById("rabuInfo").innerText =
-      `${data.rabu} / ${data.kuotaRabu} Terdaftar`;
-
-    document.getElementById("rabuSisa").innerText =
-      `Sisa Kuota: ${data.sisaRabu}`;
-
-    document.getElementById("sabtuInfo").innerText =
-      `${data.sabtu} / ${data.kuotaSabtu} Terdaftar`;
-
-    document.getElementById("sabtuSisa").innerText =
-      `Sisa Kuota: ${data.sisaSabtu}`;
+    const apiUrl =
+      "https://script.google.com/macros/s/AKfycbxw6By4VjW9-kKrEirxlLU1B2jgEEGsqQenetlAtOAPXXC5k2o2WmxwI0zavP8f1bhb5A/exec";
 
 
-    // =================================================
-    // STATUS PENDAFTARAN
-    // =================================================
+    // =========================================================
+    // VARIABEL
+    // =========================================================
 
-    const tombol =
+    let dataPendaftaran = null;
+
+
+    const tombolDaftar =
       document.getElementById("btnDaftar");
 
+    const cekStatusBox =
+      document.getElementById("cekStatusBox");
 
-    if (data.status === "OPEN") {
+    const hasilStatus =
+      document.getElementById("hasilStatus");
 
-      tombol.href = data.formUrl;
+    const inputWA =
+      document.getElementById("inputWA");
 
-      tombol.innerText =
-        "DAFTAR TERAPI";
+    const pesanCek =
+      document.getElementById("pesanCek");
 
-      tombol.style.pointerEvents =
-        "auto";
+    const statusDetail =
+      document.getElementById("statusDetail");
 
-      tombol.style.opacity =
-        "1";
+    const btnCekStatus =
+      document.getElementById("btnCekStatus");
 
-    } else {
+    const btnBatal =
+      document.getElementById("btnBatal");
 
-      tombol.removeAttribute("href");
+    const btnLanjutDaftar =
+      document.getElementById("btnLanjutDaftar");
 
-      tombol.innerText =
-        "PENDAFTARAN DITUTUP";
+    const btnTutupStatus =
+      document.getElementById("btnTutupStatus");
 
-      tombol.style.pointerEvents =
-        "none";
 
-      tombol.style.opacity =
-        "0.6";
+    // =========================================================
+    // AMBIL DATA JADWAL DAN KUOTA
+    // =========================================================
+
+    fetch(apiUrl + "?api=data")
+
+      .then(res => res.json())
+
+      .then(data => {
+
+        dataPendaftaran = data;
+
+
+        // ---------------------------------------------
+        // JADWAL
+        // ---------------------------------------------
+
+        document.getElementById("rabuHari").innerText =
+          data.tanggalRabu;
+
+        document.getElementById("sabtuHari").innerText =
+          data.tanggalSabtu;
+
+
+        // ---------------------------------------------
+        // KUOTA RABU
+        // ---------------------------------------------
+
+        document.getElementById("rabuInfo").innerText =
+          `${data.rabu} / ${data.kuotaRabu} Terdaftar`;
+
+        document.getElementById("rabuSisa").innerText =
+          `Sisa Kuota: ${data.sisaRabu}`;
+
+
+        // ---------------------------------------------
+        // KUOTA SABTU
+        // ---------------------------------------------
+
+        document.getElementById("sabtuInfo").innerText =
+          `${data.sabtu} / ${data.kuotaSabtu} Terdaftar`;
+
+        document.getElementById("sabtuSisa").innerText =
+          `Sisa Kuota: ${data.sisaSabtu}`;
+
+
+        // =================================================
+        // STATUS PENDAFTARAN
+        // =================================================
+
+        if (data.status === "OPEN") {
+
+          tombolDaftar.innerText =
+            "DAFTAR TERAPI";
+
+          tombolDaftar.style.opacity =
+            "1";
+
+          tombolDaftar.style.pointerEvents =
+            "auto";
+
+        }
+
+        else {
+
+          tombolDaftar.innerText =
+            "PENDAFTARAN DITUTUP";
+
+          tombolDaftar.style.opacity =
+            "0.6";
+
+          tombolDaftar.style.pointerEvents =
+            "auto";
+
+        }
+
+      })
+
+
+      .catch(err => {
+
+        document.getElementById("rabuInfo").innerText =
+          "Gagal memuat data";
+
+        document.getElementById("sabtuInfo").innerText =
+          "Gagal memuat data";
+
+        console.error(err);
+
+      });
+
+
+
+    // =========================================================
+    // KLIK DAFTAR TERAPI
+    // =========================================================
+
+    tombolDaftar.addEventListener(
+      "click",
+      function(){
+
+        if (!dataPendaftaran) {
+
+          alert(
+            "Data pendaftaran belum selesai dimuat. Silakan tunggu sebentar."
+          );
+
+          return;
+
+        }
+
+
+        // ---------------------------------------------
+        // JIKA PENDAFTARAN DITUTUP
+        // ---------------------------------------------
+
+        if (dataPendaftaran.status !== "OPEN") {
+
+          alert(
+            "Pendaftaran saat ini sedang ditutup."
+          );
+
+          return;
+
+        }
+
+
+        // ---------------------------------------------
+        // TAMPILKAN CEK STATUS
+        // ---------------------------------------------
+
+        cekStatusBox.style.display =
+          "block";
+
+        hasilStatus.style.display =
+          "none";
+
+        pesanCek.innerText =
+          "";
+
+        inputWA.value =
+          "";
+
+        inputWA.focus();
+
+      }
+    );
+
+
+
+    // =========================================================
+    // NORMALISASI NOMOR WA
+    // =========================================================
+
+    function normalisasiWA(nomor){
+
+      nomor =
+        nomor.replace(/\D/g, "");
+
+
+      // 628xxx → 628xxx
+
+      if (nomor.startsWith("62")) {
+
+        return nomor;
+
+      }
+
+
+      // 08xxx → 628xxx
+
+      if (nomor.startsWith("0")) {
+
+        return "62" + nomor.substring(1);
+
+      }
+
+
+      return nomor;
+
     }
 
-  })
-  .catch(err => {
 
-    document.getElementById("rabuInfo").innerText =
-      "Gagal memuat data";
 
-    document.getElementById("sabtuInfo").innerText =
-      "Gagal memuat data";
+    // =========================================================
+    // CEK STATUS NOMOR WA
+    // =========================================================
 
-    console.error(err);
+    btnCekStatus.addEventListener(
+      "click",
+      function(){
 
-  });
+        let wa =
+          normalisasiWA(inputWA.value);
+
+
+        // ---------------------------------------------
+        // VALIDASI
+        // ---------------------------------------------
+
+        if (!wa) {
+
+          pesanCek.innerText =
+            "Silakan masukkan nomor WhatsApp.";
+
+          pesanCek.style.color =
+            "#c62828";
+
+          return;
+
+        }
+
+
+        if (wa.length < 10) {
+
+          pesanCek.innerText =
+            "Nomor WhatsApp tidak valid.";
+
+          pesanCek.style.color =
+            "#c62828";
+
+          return;
+
+        }
+
+
+        // ---------------------------------------------
+        // STATUS LOADING
+        // ---------------------------------------------
+
+        btnCekStatus.disabled =
+          true;
+
+        btnCekStatus.innerText =
+          "MEMERIKSA...";
+
+        pesanCek.innerText =
+          "Sedang memeriksa nomor WhatsApp...";
+
+        pesanCek.style.color =
+          "#555";
+
+
+        // =================================================
+        // PANGGIL APPS SCRIPT
+        // =================================================
+
+        fetch(
+          apiUrl +
+          "?api=cekStatus&wa=" +
+          encodeURIComponent(wa)
+        )
+
+        .then(res => res.json())
+
+        .then(data => {
+
+          btnCekStatus.disabled =
+            false;
+
+          btnCekStatus.innerText =
+            "CEK STATUS";
+
+
+          // =================================================
+          // SUDAH TERDAFTAR
+          // =================================================
+
+          if (data.terdaftar === true) {
+
+            cekStatusBox.style.display =
+              "none";
+
+            hasilStatus.style.display =
+              "block";
+
+
+            let nama =
+              data.nama || "";
+
+            let hari =
+              data.hari || "";
+
+            let keterangan =
+              data.keterangan || "";
+
+
+            statusDetail.innerHTML =
+
+              "<b>Nomor WhatsApp sudah terdaftar.</b><br><br>" +
+
+              "Nama: <b>" +
+              nama +
+              "</b><br>" +
+
+              "Jadwal: <b>" +
+              hari +
+              "</b><br><br>" +
+
+              keterangan;
+
+
+            // Karena sudah terdaftar,
+            // jangan tampilkan tombol daftar lagi.
+
+            btnLanjutDaftar.style.display =
+              "none";
+
+          }
+
+
+          // =================================================
+          // BELUM TERDAFTAR
+          // =================================================
+
+          else {
+
+            cekStatusBox.style.display =
+              "none";
+
+            hasilStatus.style.display =
+              "block";
+
+
+            statusDetail.innerHTML =
+
+              "<b>Nomor WhatsApp belum terdaftar.</b><br><br>" +
+
+              "Silakan lanjutkan ke formulir " +
+              "pendaftaran untuk memilih jadwal terapi.";
+
+
+            btnLanjutDaftar.style.display =
+              "inline-block";
+
+          }
+
+        })
+
+
+        .catch(err => {
+
+          console.error(err);
+
+          btnCekStatus.disabled =
+            false;
+
+          btnCekStatus.innerText =
+            "CEK STATUS";
+
+          pesanCek.innerText =
+            "Gagal menghubungi server. Silakan coba lagi.";
+
+          pesanCek.style.color =
+            "#c62828";
+
+        });
+
+      }
+    );
+
+
+
+    // =========================================================
+    // LANJUT KE GOOGLE FORM
+    // =========================================================
+
+    btnLanjutDaftar.addEventListener(
+      "click",
+      function(){
+
+        if (
+          dataPendaftaran &&
+          dataPendaftaran.formUrl
+        ){
+
+          window.open(
+            dataPendaftaran.formUrl,
+            "_blank"
+          );
+
+        }
+
+        else {
+
+          alert(
+            "Link pendaftaran belum tersedia."
+          );
+
+        }
+
+      }
+    );
+
+
+
+    // =========================================================
+    // BATAL CEK STATUS
+    // =========================================================
+
+    btnBatal.addEventListener(
+      "click",
+      function(){
+
+        cekStatusBox.style.display =
+          "none";
+
+        inputWA.value =
+          "";
+
+        pesanCek.innerText =
+          "";
+
+      }
+    );
+
+
+
+    // =========================================================
+    // TUTUP HASIL STATUS
+    // =========================================================
+
+    btnTutupStatus.addEventListener(
+      "click",
+      function(){
+
+        hasilStatus.style.display =
+          "none";
+
+        inputWA.value =
+          "";
+
+      }
+    );
+
+
   </script>
 
 </body>
 </html>
+```
