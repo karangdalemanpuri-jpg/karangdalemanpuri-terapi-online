@@ -494,20 +494,26 @@
         }
 
 
-        // ---------------------------------------------
         // JIKA PENDAFTARAN DITUTUP
-        // ---------------------------------------------
-
-        if (dataPendaftaran.status !== "OPEN") {
-
+        // ATAU SEMUA KUOTA SUDAH PENUH
+        
+        const semuaKuotaPenuh =
+          Number(dataPendaftaran.sisaRabu) <= 0 &&
+          Number(dataPendaftaran.sisaSabtu) <= 0;
+        
+        if (
+          dataPendaftaran.status !== "OPEN" ||
+          semuaKuotaPenuh
+        ) {
+        
           alert(
-            "Pendaftaran saat ini sedang ditutup."
+            "Pendaftaran saat ini sudah ditutup karena kuota Rabu dan Sabtu telah penuh."
           );
-
+        
           return;
-
+        
         }
-
+        
 
         // ---------------------------------------------
         // TAMPILKAN CEK STATUS
