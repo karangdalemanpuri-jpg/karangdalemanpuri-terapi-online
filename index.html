@@ -201,6 +201,13 @@
   DAFTAR TERAPI
 </button>
 
+<button
+  id="btnStatusPendaftaran"
+  class="btn btn-secondary"
+  type="button">
+  STATUS PENDAFTARAN
+</button>
+
 <div id="cekStatusBox" class="status-box">
 
   <div class="status-title">
@@ -340,7 +347,10 @@
 
     const tombolDaftar =
       document.getElementById("btnDaftar");
-
+    
+    const btnStatusPendaftaran =
+      document.getElementById("btnStatusPendaftaran");
+    
     const cekStatusBox =
       document.getElementById("cekStatusBox");
 
@@ -478,66 +488,93 @@
     // =========================================================
     // KLIK DAFTAR TERAPI
     // =========================================================
-
+    
     tombolDaftar.addEventListener(
       "click",
       function(){
-
+    
         if (!dataPendaftaran) {
-
+    
           alert(
             "Data pendaftaran belum selesai dimuat. Silakan tunggu sebentar."
           );
-
+    
           return;
-
+    
         }
-
-
+    
+    
+        // =====================================================
         // JIKA PENDAFTARAN DITUTUP
-        // ATAU SEMUA KUOTA SUDAH PENUH
-        
+        // =====================================================
+    
         const semuaKuotaPenuh =
           Number(dataPendaftaran.sisaRabu) <= 0 &&
           Number(dataPendaftaran.sisaSabtu) <= 0;
-        
+    
         if (
           dataPendaftaran.status !== "OPEN" ||
           semuaKuotaPenuh
         ) {
-        
+    
           alert(
-            "Pendaftaran saat ini sudah ditutup karena kuota Rabu dan Sabtu telah penuh."
+            "Pendaftaran saat ini sedang ditutup."
           );
-        
+    
           return;
-        
+    
         }
-        
-
-        // ---------------------------------------------
-        // TAMPILKAN CEK STATUS
-        // ---------------------------------------------
-
-        cekStatusBox.style.display =
-          "block";
-
-        hasilStatus.style.display =
-          "none";
-
-        pesanCek.innerText =
-          "";
-
-        inputWA.value =
-          "";
-
-        inputWA.focus();
-
+    
+    
+        // =====================================================
+        // PENDAFTARAN MASIH OPEN
+        // LANGSUNG KE GOOGLE FORM
+        // =====================================================
+    
+        if (dataPendaftaran.formUrl) {
+    
+          window.open(
+            dataPendaftaran.formUrl,
+            "_blank"
+          );
+    
+        }
+    
+        else {
+    
+          alert(
+            "Link pendaftaran belum tersedia."
+          );
+    
+        }
+    
       }
     );
 
-
-
+    // =========================================================
+    // KLIK STATUS PENDAFTARAN
+    // =========================================================
+    
+    btnStatusPendaftaran.addEventListener(
+      "click",
+      function(){
+    
+        cekStatusBox.style.display =
+          "block";
+    
+        hasilStatus.style.display =
+          "none";
+    
+        pesanCek.innerText =
+          "";
+    
+        inputWA.value =
+          "";
+    
+        inputWA.focus();
+    
+      }
+    );
     // =========================================================
     // NORMALISASI NOMOR WA
     // =========================================================
