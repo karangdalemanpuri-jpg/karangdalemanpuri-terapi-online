@@ -815,7 +815,7 @@
     
     
         // ---------------------------------------------
-        // CEK STATUS PENDAFTARAN
+        // CEK KUOTA
         // ---------------------------------------------
     
         const semuaKuotaPenuh =
@@ -823,13 +823,17 @@
           Number(dataPendaftaran.sisaSabtu) <= 0;
     
     
+        // ---------------------------------------------
+        // CEK STATUS PENDAFTARAN
+        // ---------------------------------------------
+    
         if (
           dataPendaftaran.status !== "OPEN" ||
           semuaKuotaPenuh
         ) {
     
           alert(
-            "Pendaftaran saat ini sedang ditutup. Silakan mencoba kembali pada saat pendaftaran dibuka."
+            "Pendaftaran saat ini sedang ditutup."
           );
     
           return;
