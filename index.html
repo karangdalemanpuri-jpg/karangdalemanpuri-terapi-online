@@ -792,35 +792,74 @@
 
     // =========================================================
     // LANJUT KE GOOGLE FORM
+    // HANYA JIKA PENDAFTARAN OPEN
     // =========================================================
-
+    
     btnLanjutDaftar.addEventListener(
       "click",
       function(){
-
+    
+        // ---------------------------------------------
+        // DATA BELUM TERSEDIA
+        // ---------------------------------------------
+    
+        if (!dataPendaftaran) {
+    
+          alert(
+            "Data pendaftaran belum selesai dimuat. Silakan tunggu sebentar."
+          );
+    
+          return;
+    
+        }
+    
+    
+        // ---------------------------------------------
+        // CEK STATUS PENDAFTARAN
+        // ---------------------------------------------
+    
+        const semuaKuotaPenuh =
+          Number(dataPendaftaran.sisaRabu) <= 0 &&
+          Number(dataPendaftaran.sisaSabtu) <= 0;
+    
+    
         if (
-          dataPendaftaran &&
-          dataPendaftaran.formUrl
-        ){
-
+          dataPendaftaran.status !== "OPEN" ||
+          semuaKuotaPenuh
+        ) {
+    
+          alert(
+            "Pendaftaran saat ini sedang ditutup. Silakan mencoba kembali pada saat pendaftaran dibuka."
+          );
+    
+          return;
+    
+        }
+    
+    
+        // ---------------------------------------------
+        // PENDAFTARAN OPEN
+        // ---------------------------------------------
+    
+        if (dataPendaftaran.formUrl) {
+    
           window.open(
             dataPendaftaran.formUrl,
             "_blank"
           );
-
+    
         }
-
+    
         else {
-
+    
           alert(
             "Link pendaftaran belum tersedia."
           );
-
+    
         }
-
+    
       }
     );
-
 
 
     // =========================================================
