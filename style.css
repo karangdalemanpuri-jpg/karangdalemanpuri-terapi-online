@@ -26,6 +26,16 @@ body{
 
 }
 
+.logo-container{
+  margin-bottom:10px;
+}
+
+.logo{
+  width:100px;
+  height:100px;
+  object-fit:contain;
+}
+
 h1{
 
     color:#0b6b3a;
